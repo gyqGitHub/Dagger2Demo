@@ -1,4 +1,4 @@
-package com.example.daggerdemo.mamual
+package com.example.daggerdemo.manual
 
 import android.app.Application
 

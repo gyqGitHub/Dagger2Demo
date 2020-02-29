@@ -1,8 +1,7 @@
-package com.example.daggerdemo.mamual
+package com.example.daggerdemo.manual
 
 import android.app.Activity
 import android.os.Bundle
-import retrofit2.Retrofit
 
 /**
  * 1。要创建一个LoginViewModel，需要先创建UserRepository，而UserRepository又需要UserRemoteDataSource和UserLocalDataSource实例，
@@ -40,29 +39,29 @@ class LoginActivity: Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // In order to satisfy the dependencies of LoginViewModel, you have to also
+        // In order to satisfy the dependencies of InjectViewModel, you have to also
         // satisfy the dependencies of all of its dependencies recursively.
         // First, create retrofit which is the dependency of UserRemoteDataSource
 //        val retrofit = Retrofit.Builder()
 //            .baseUrl("https://example.com")
 //            .build()
-//            .create(LoginService::class.java)
+//            .create(InjectService::class.java)
 
         // Then, satisfy the dependencies of UserRepository
 //        val remoteDataSource = UserRemoteDataSource(retrofit)
 //        val localDataSource = UserLocalDataSource()
 
-        // Now you can create an instance of UserRepository that LoginViewModel needs
+        // Now you can create an instance of UserRepository that InjectViewModel needs
 //        val userRepository = UserRepository(localDataSource, remoteDataSource)
 
-        // Lastly, create an instance of LoginViewModel with userRepository
-//        loginViewModel = LoginViewModel(userRepository)
+        // Lastly, create an instance of InjectViewModel with userRepository
+//        injectViewModel = InjectViewModel(userRepository)
 
         //把重复的样板代码封装到一个类中达到复用，如AppContainer；封装到Application中，因此也不需要单例类了
-//        loginViewModel = LoginViewModel((applicationContext as MyApplication).appContainer.userRepository)
+//        injectViewModel = InjectViewModel((applicationContext as MyApplication).appContainer.userRepository)
 
           //如果在多个地方（如多个Activity）使用到了LoginViewModel，则可以通过LoginViewModelFactory创建LoginViewModel
-//        loginViewModel = (applicationContext as MyApplication).appContainer.loginViewModelFactory.create()
+//        injectViewModel = (applicationContext as MyApplication).appContainer.loginViewModelFactory.create()
 
         //在程序流程中管理依赖
         appContainer = (applicationContext as MyApplication).appContainer

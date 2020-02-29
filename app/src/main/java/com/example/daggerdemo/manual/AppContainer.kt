@@ -1,4 +1,4 @@
-package com.example.daggerdemo.mamual
+package com.example.daggerdemo.manual
 
 import retrofit2.Retrofit
 
