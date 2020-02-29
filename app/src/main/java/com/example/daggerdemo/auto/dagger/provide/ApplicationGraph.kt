@@ -23,14 +23,14 @@ import javax.inject.Singleton
  *     使用作用域注解分两步走：1.用@Singleton注解@Component注解的接口(如ApplicationGraph)
  *                          2.用@Singleton注解依赖类(如UserRepository)或者 module(如 NetworkModule) 中提供依赖类的方法(如 provideLoginRetrofitService())
  *
- *     ⚠️注意：作用域注解不会影响具体提供依赖类的地方(UserRepository_Factory,NetworkModule_ProvideLoginRetrofitService$app_debugFactory)，只会影响最终提供给依赖类的地方(如 DaggerApplicationGraph )
+ *     注意：作用域注解不会影响具体提供依赖类的地方(UserRepository_Factory,NetworkModule_ProvideLoginRetrofitService$app_debugFactory)，
+ *          只会影响最终提供给依赖类的地方(如 DaggerApplicationGraph )
  *
  * 也可以创建自己的作用域注解(如MyCustomScope)
  *
  * @author gyq
  * @date 2020-02-24
  */
-@Singleton
 @Component(modules = [NetworkModule::class, UserModule::class])
 interface ApplicationGraph {
     fun repository(): UserRepository
@@ -43,16 +43,6 @@ interface ApplicationGraph {
 
     fun getUser():UserService
 }
-
-/**
- * 该注解的作用跟@Singleton一样，因为是仿照@Singleton创建的注解
- * 作用域详情请看。。。。。
- */
-@Scope
-@MustBeDocumented
-@Retention(value = AnnotationRetention.RUNTIME)
-annotation class MyCustomScope
-
 
 /**
  * dagger组件的创建：

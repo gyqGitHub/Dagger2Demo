@@ -17,7 +17,7 @@ public abstract class UserModule {
      *      1.module下 @Binds注解 和 abstract 修饰符
      *      2.方法参数为具体的实现了接口的依赖类(RequestInterceptor)，并且该依赖类一般用@Inject 注解构造方法
      *
-     *  应用场景：用@Inject注解接口类型字段,不会像@Provides生成对应的工厂类，性能上应该比@Provides更好
+     *  应用场景：当需要提供的依赖类是接口时，如(@Inject lateinit var interceptor:Interceptor)
      *           完全可以用@Provides代替
      *
      * @param interceptor

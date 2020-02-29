@@ -6,9 +6,7 @@ import retrofit2.Retrofit
 import javax.inject.Singleton
 
 /**
- * 解决：想对接口，第三方类依赖注入或者需要根据运行结果决定创建某个类时，没办法使用 @Inject 注解构造方法的情况
- *      (协助 Comment 组件解决依赖哪里来)
- *
+ * 解决：想对接口，第三方类依赖注入或者需要根据运行结果决定创建某个类时，没办法使用 @Inject 注解构造方法的情况===>解决依赖哪里来
  *      会根据该类中的方法(provideLoginRetrofitService())生成工厂类(NetworkModule_ProvideLoginRetrofitServiceFactory),该工厂类持有
  *      module(如 NetworkModule)对应的字段，最终依赖的提供者就是module
  *
@@ -36,14 +34,8 @@ import javax.inject.Singleton
 @Module
 class NetworkModule constructor(private val test:String){
 
-    // @Provides tell Dagger how to create instances of the type that this function
-    // returns (i.e. LoginRetrofitService).
-    // Function parameters are the dependencies of this type.
-    @Singleton
     @Provides
     internal fun provideLoginRetrofitService(): LoginRetrofitService {
-        // Whenever Dagger needs to provide an instance of type LoginRetrofitService,
-        // this code (the one inside the @Provides method) is run.
         return Retrofit.Builder()
             .baseUrl("https://example.com")
             .build()
@@ -52,8 +44,6 @@ class NetworkModule constructor(private val test:String){
 
     @Provides
     internal fun provideLoginService(): LoginService {
-        // Whenever Dagger needs to provide an instance of type LoginRetrofitService,
-        // this code (the one inside the @Provides method) is run.
         return Retrofit.Builder()
             .baseUrl("https://example.com")
             .build()

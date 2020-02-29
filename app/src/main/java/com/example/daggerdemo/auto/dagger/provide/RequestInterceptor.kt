@@ -10,7 +10,6 @@ import javax.inject.Singleton
  * @author gyq
  * @date 2020-02-25
  */
-@Singleton
 class RequestInterceptor @Inject constructor() : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response? {
         return null
