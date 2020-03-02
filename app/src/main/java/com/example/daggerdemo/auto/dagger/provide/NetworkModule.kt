@@ -1,5 +1,6 @@
 package com.example.daggerdemo.auto.dagger.provide
 
+import android.util.Log
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -16,7 +17,7 @@ import javax.inject.Singleton
  *
  *  如果增加参数okHttpClient: OkHttpClient，该怎么处理呢？
  *
- *  module可以用在 Component 中，也可以用在其他的 module 上，是个强大功能，但容易滥用，因为一旦添加到module到组件中，Dagger就能通过
+ *  module可以用在 Component 中，也可以用在其他的 module 上，是个强大功能，但容易滥用，因为一旦添加module到组件中，Dagger就能通过
  *  组件去提供依赖类，因此在添加之前需要先确定该module是否已添加，避免重复添加，造成性能的损失
  *  良好的做法是：任意两个或多个module中公共的部分抽出来组成一个新的module
  *
@@ -31,11 +32,11 @@ import javax.inject.Singleton
  * @author gyq
  * @date 2020-02-24
  */
-@Module
+@Module(includes = [MultiModule::class])
 class NetworkModule constructor(private val test:String){
 
     @Provides
-    internal fun provideLoginRetrofitService(): LoginRetrofitService {
+    internal fun provideLoginRetrofitService(multiData: MultiData): LoginRetrofitService {
         return Retrofit.Builder()
             .baseUrl("https://example.com")
             .build()

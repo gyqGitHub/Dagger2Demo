@@ -9,7 +9,7 @@ import okhttp3.Interceptor;
  * @author gyq
  * @date 2020-02-25
  */
-@Module
+@Module(includes = {MultiModule.class})
 public abstract class UserModule {
 
     /**
@@ -32,7 +32,8 @@ public abstract class UserModule {
      * @return
      */
     @Provides
-    public static UserService providesUserService(){
+    public static UserService providesUserService(MultiData multiData){
         return new UserIml();
     }
+
 }
