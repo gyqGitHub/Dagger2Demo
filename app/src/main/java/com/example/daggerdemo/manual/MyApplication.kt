@@ -8,7 +8,5 @@ import android.app.Application
  * @date 2020-02-24
  */
 class MyApplication : Application() {
-
-    // Instance of AppContainer that will be used by all the Activities of the app
     val appContainer = AppContainer()
 }
