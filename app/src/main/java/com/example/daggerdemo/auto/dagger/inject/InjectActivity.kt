@@ -9,13 +9,15 @@ import javax.inject.Inject
 
 /**
  * 通过 @Inject 注解字段进行依赖注入（协助 Comment 组件解决依赖哪里去的问题）
- *     1。首先通过 @Inject 注解字段（injectViewModel）告诉 dagger 需要注入依赖，并自动生成一个 MembersInjector 类（
+ *     1。首先通过 @Inject 注解字段（injectViewModel）告诉 dagger 需要注入的依赖，并自动生成一个 MembersInjector 类（
  *        如LoginActivity_MembersInjector，该类通过 injectLoginViewModel() 来注入LoginViewModel
  *
  *     2。其次还要通过在 comment 组件中的inject(activity:XxActivity)方法来告诉 Dagger @Inject注解的字段所在类(如LoginActivity)（依赖哪里去）
  *
  * 注意：1。在 Activity 中使用时，需要在 onCreate() 中的 super.onCreate(savedInstanceState) 调用之前
  *      2。在 Fragment 中使用时，需要在 onAttach() 中使用，在 super.onAttach() 调用之前之后都可以
+ *
+ *  问题？dagger2 是否可以注入静态和局部变量
  *
  * @author gyq
  * @date 2020-02-24
